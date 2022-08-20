@@ -32,7 +32,7 @@
 <div class="left-menu">
     <div class="content-logo">
         <div class="logo">
-            <img alt="platform by Emily van den Heever from the Noun Project" title="platform by Emily van den Heever from the Noun Project" src="images/logo.png" height="32" />
+            <img alt="Adalify Logo" title="Adalify API Documentation" src="images/adalifylogo.png" height="60" />
             <span>API Documentation</span>
         </div>
         <button class="burger-menu-icon" id="button-menu-mobile">
@@ -42,18 +42,35 @@
     <div class="mobile-menu-closer"></div>
     <div class="content-menu">
         <div class="content-infos">
-            <div class="info"><b>Version:</b> 1.0.5</div>
-            <div class="info"><b>Last Updated:</b> 15th Sep, 2021</div>
+            <div class="info"><b>Version:</b> 1.0.2</div>
+            <div class="info"><b>Last Updated:</b> 20th Aug, 2022</div>
         </div>
+
+     <!-- LEFT HAND SIDE NAV MENU -->
         <ul>
-            <li class="scroll-to-link active" data-target="content-get-started">
-                <a>GET STARTED</a>
+            <li class="scroll-to-link active" data-target="content-getting-started">
+                <a>Getting Started</a>
+  
+               
             </li>
-            <li class="scroll-to-link" data-target="content-get-characters">
-                <a>Get Characters</a>
+            <li class="scroll-to-link" data-target="content-authorization">
+                <a>Authorization</a>
             </li>
-            <li class="scroll-to-link" data-target="content-errors">
-                <a>Errors</a>
+            <li class="scroll-to-link" data-target="content-sms-to-twilio">
+                <a>SMS to Twilio</a>
+            </li>
+            <li class="scroll-to-link" data-target="content-detect-device">
+                <a>Detect Device - User Agent</a>
+               
+            </li>
+            <li class="scroll-to-link" data-target="content-file-upload">
+                <a>File Upload and Storage</a>
+            </li>
+            <li class="scroll-to-link" data-target="content-calendar-links">
+                <a>Add to Calendar Links</a>
+            </li>
+            <li class="scroll-to-link" data-target="content-string-functions">
+                <a>String Functions</a>
             </li>
         </ul>
     </div>
@@ -62,151 +79,968 @@
 
 <div class="content-page">
     <div class="content">
-        <div class="overflow-hidden content-section" id="content-get-started">
-            <h1>Get started</h1>
+          <!-- GETTING STARTED -->
+        <div class="overflow-hidden content-section" id="content-getting-started">
+            <h1>Introduction to Adalify</h1>
             <p>
-                The Westeros API provides programmatic access to read Game of Thrones data. Retrieve a character, provide an oauth connexion, retrieve a familly, filter them, etc.
+                Welcome to the Adalify documentation. Here you will find everything you need to set up, and use Adalify.
             </p>
             <p>
-                To use this API, you need an <strong>API key</strong>. Please contact us at <a href="mailto:jon.snow@nightswatch.wes">jon.snow@nightswatch.wes</a> to get your own API key.
+                You can read the following documentation or alternatively watch the below video. Please read the common issues seciton below before moving onto the Authorization section.
             </p>
+            <p align="left">
+            <iframe width="420" height="315"
+src="https://www.youtube.com/embed/lYlidB7NiW0"></iframe></p>
+
         </div>
-        <div class="overflow-hidden content-section" id="content-get-characters">
-            <h2>get characters</h2>
-            <p>
+        
+        
+        <!-- Common issues -->
+        <div class="overflow-hidden content-section" id="content-common-issues">
+            <h2>Common Issues</h2>
+
+                  <p>Note that all endpoint URLs end with a <strong>/</strong> (not including query string parameters)
+                    For example, <code class="higlighted break-word">https://api.adalify.com/twilio_api/send_sms/</code> will work, but <code class="higlighted break-word">https://api.adalify.com/twilio_api/send_sms</code> will not.
+                    
+                    All required arguments, if not provided, will return a response with the status code 500 and an explanation as to which field is missing.</p>
+             
+              <h3>Copy and Paste</h3>           <p>
                 To get characters you need to make a POST call to the following url :<br>
                 <code class="higlighted break-word">http://api.westeros.com/character/get</code>
             </p>
-            <br>
-            <h4>QUERY PARAMETERS</h4>
-            <table>
-                <thead>
-                <tr>
-                    <th>Field</th>
-                    <th>Type</th>
-                    <th>Description</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>secret_key</td>
-                    <td>String</td>
-                    <td>Your API key.</td>
-                </tr>
-                <tr>
-                    <td>search</td>
-                    <td>String</td>
-                    <td>(optional) A search word to find character by name.</td>
-                </tr>
-                <tr>
-                    <td>house</td>
-                    <td>String</td>
-                    <td>
-                        (optional) a string array of houses:
-                    </td>
-                </tr>
-                <tr>
-                    <td>alive</td>
-                    <td>Boolean</td>
-                    <td>
-                        (optional) a boolean to filter alived characters
-                    </td>
-                </tr>
-                <tr>
-                    <td>gender</td>
-                    <td>String</td>
-                    <td>
-                        (optional) a string to filter character by gender:<br> m: male<br> f: female
-                    </td>
-                </tr>
-                <tr>
-                    <td>offset</td>
-                    <td>Integer</td>
-                    <td>(optional - default: 0) A cursor for use in pagination. Pagination starts offset the specified offset.</td>
-                </tr>
-                <tr>
-                    <td>limit</td>
-                    <td>Integer</td>
-                    <td>(optional - default: 10) A limit on the number of objects to be returned, between 1 and 100.</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="overflow-hidden content-section" id="content-errors">
-            <h2>Errors</h2>
+            <h3>Custom actions common mistakes</h3>
             <p>
-                The Westeros API uses the following error codes:
-            </p>
-            <table>
-                <thead>
-                <tr>
-                    <th>Error Code</th>
-                    <th>Meaning</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>X000</td>
-                    <td>
-                        Some parameters are missing. This error appears when you don't pass every mandatory parameters.
-                    </td>
-                </tr>
-                <tr>
-                    <td>X001</td>
-                    <td>
-                        Unknown or unvalid <code class="higlighted">secret_key</code>. This error appears if you use an unknow API key or if your API key expired.
-                    </td>
-                </tr>
-                <tr>
-                    <td>X002</td>
-                    <td>
-                        Unvalid <code class="higlighted">secret_key</code> for this domain. This error appears if you use an API key non specified for your domain. Developper or Universal API keys doesn't have domain checker.
-                    </td>
-                </tr>
-                <tr>
-                    <td>X003</td>
-                    <td>
-                        Unknown or unvalid user <code class="higlighted">token</code>. This error appears if you use an unknow user <code class="higlighted">token</code> or if the user <code class="higlighted">token</code> expired.
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+          - Creating query parameters instead of headers <br>
+          - Creating headers instead of query parameters <br>
+          - Giving invalid example values <br> 
+                </p>   
         </div>
+
+
+<hr>
+      <!-- AUTHORIZATION -->
+      <div class="overflow-hidden content-section" id="content-authorization">
+        <h1>Authorization</h1>
+
+              <p>You will need an active API key from signing up to Adalify in order to use the APIs and to use the authorization.</p>
+         
+          <h3>Get your API Key</h3>           <p>
+            Make an account on Adalify and you will immediately be given your API key. This can be used for 14 days for free, after which you need to hit the subscribe button to keep your API key active.
+        </p>
+        <h3>Authorization in custom actions (Adalo)</h3>
+        <p><img alt="Authorization in Adalo" title="Authorization input Adalo custom action" src="images/authorizationadalo.jpeg" width="50%"/></p>
+        <p>
+            Create a Header as above, with the name <code class="higlighted break-word">Authorization</code> and the Value <code class="higlighted break-word">Bearer YOUR-API-KEY</code>
+            </p><p>
+                Make sure there are no trailing spaces and there is only one space between Bearer and your API key. If you have any problems try deleting the space and typing it again.
+            </p>   
+            <h3>Responses</h3>
+            <p>Below are the responses you might get relating to your API key            </p>  
+            <p><code class="higlighted break-word">"Authentication credentials were not provided”</code>: No header Authorization set</p>
+            <p><code class="higlighted break-word">"Provide Adalify token in the header Authorization</code>: Bearer {APIKEY}": Incorrect value format. Must be “Bearer {APIKEY}”</p>    
+            <p><code class="higlighted break-word">"Could not find an Adalify' user with provided token"</code>: Incorrect Adalify API token. Check your token again. Common reasons are there is more than one space between Bearer and the token, and make sure there are no brackets surrounding the API Key.</p>    
+            <p><code class="higlighted break-word">"Only active members allowed"</code>: Your API is inactive. Check your Adalify subscription status or contact our team support@adalify.com</p>    
+
     </div>
+    <hr>
+      <!-- SMS TO TWILIO -->
+      <div class="overflow-hidden content-section" id="content-sms-to-twilio">
+        <h1>SMS to Twilio</h1>
+
+              <p>This API lets you connect to your own Twilio account and send SMS from a custom action in your Adalo app. You must have set up your Twilio account correctly first.</p>
+              <p><b>Pricing</b> - This is an unlimited API from Adalify and you are not charged for usage. However, Twilio may charge you for usage. Please refer to Twilio pricing</p>            
+              
+              <p align="left"><iframe width="420" height="315" src="https://www.youtube.com/embed/Wp96EI6D3H0"></iframe></p>
+                
+          <h3>Create Custom Action in Adalo</h3>           
+        <p>
+            Type <code class="higlighted break-word">CREATE</code>
+        </p>
+        <p>
+            Method <code class="higlighted break-word">POST</code>
+        </p>
+        <h3>Endpoint</h3>           
+        <p>
+             <code class="higlighted break-word">https://api.adalify.com/twilio_api/send_sms/</code>
+        </p>
+        <h3>Authorization Header</h3>   
+        <p><img alt="Authorization in Adalo" title="Authorization input Adalo custom action" src="images/authorizationadalo.jpeg" width="50%"/></p>
+        <p>Create the Header parameter as above, switching the example API key for YOUR OWN API KEY</p>
+        <p>
+        <h3>Query Parameters (case sensitive)</h3>
+        <p>
+       
+            <code class="higlighted break-word">twilio_account_id</code> Your Twilio account id (required*)<br><br>
+            <code class="higlighted break-word">twilio_auth_token</code>Your Twilio authentication token (required*)
+            <br><br>
+            <code class="higlighted break-word">to</code> The number to send the message to (required*) 
+            <br><br>
+            <code class="higlighted break-word">from_</code> The sent from number (required*) 
+            <br><br>
+            <code class="higlighted break-word">body</code> The message content
+            <br><br>
+            </p>  
+            <p>Please notice the underscore in the <code class="higlighted break-word">from_</code> parameter.</p> 
+            <p>The <code class="higlighted break-word">from_</code> parameter is a number you have set on your Twilio account. You can't choose any number.</p>
+
+
+            <h3>Response</h3><p>
+            <code class="higlighted break-word">success </code> (Boolean) true for successful request, False otherwise<br> <br><code class="higlighted break-word">error message</code> Error explanation when success is False.<br></p>
+    </div>
+    <hr>
+    <!-- DETECT DEVICE -->
+
+    <div class="overflow-hidden content-section" id="content-detect-device">
+        <div class="overflow-hidden content-section" id="content-sms-to-twilio">
+        
+            <h1>Detect Device (User Agent)</h1>
+        <p><iframe width="628" height="353" src="https://www.youtube.com/embed/-Q_vad0OCPk" title="Adalo Detect User's Device information with Adalify (User Agent)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+             
+          <h2>Introduction</h2>   
+          <p>This API allows you to retrieve the User's device data, such as their operating system and hardware brand. For example, you might want to know if your user is using Android, iOS, or PC.
+<br><br>
+            This is a three-step API.
+            <br><br>
+
+            Step 1 - Our first custom action generates an ID and a webview URL.
+            <br><br>
+
+            Step 2 - We then direct the user to a page with a webview using the URL returned from step 1.
+            <br><br>
+
+            Step 3 - Another custom action retrieves the user's device information.</p>        
+          <h2>Step 1</h2>   
+          <h3>Create Custom Action in Adalo</h3><p>Create a new custom action on a button in Adalo. The button has a custom action as below:</p>  
+          <p>
+            Type <code class="higlighted break-word">CREATE</code>
+        </p>
+        <p>
+            Method <code class="higlighted break-word">POST</code>
+        </p>
+        <p>
+            Endpoint <code class="higlighted break-word"> https://api.adalify.com/user_agent/create/</code>
+        </p>
+        <h3>Authorization Header</h3>
+        <p><img alt="Authorization in Adalo" title="Authorization input Adalo custom action" src="images/authorizationadalo.jpeg" width="50%"/></p>
+        <p>
+            Create a Header as above, with the name <code class="higlighted break-word">Authorization</code> and the Value <code class="higlighted break-word">Bearer YOUR-API-KEY</code>. Use your own API key, NOT the example key in the image.
+            </p>
+      <h3>Query Parameters</h3>       <p>None required</p>
+
+      <h3>Response Body</h3>       <p>None required</p>
+      <p>
+         <code class="higlighted break-word">success</code> Boolean if the request was successful or not
+    </p>
+    <p>
+         <code class="higlighted break-word">status</code> String version of success value. Can be either ‘successful’ or ‘failed’.
+    </p>
+    <p>
+         <code class="higlighted break-word">data.id</code> String Provided unique id which can be retrieved later. null if not provided.
+    </p>
+    <p>
+         <code class="higlighted break-word">data.useragentinfo</code> User-agent details
+    </p>
+    <p>
+         <code class="higlighted break-word">data.update_endpoint</code> The endpoint to display with webview
+    </p>
+    <p>
+         <code class="higlighted break-word">data.retrieve_endpoint</code> The endpoint to retrieve the data
+    </p>
+<h3>Save outputs to the database</h3> <p>Add another action to the same button to update the logged-in user with the returned information above.</p>
+<p>Once you've done this, you can go to step 2</p>
+
+
+          <h2>Step 2</h2>
+               <p>On the same button that you created the first custom action, link it to a new page.
+
+<p>On the new page, have a webview.
+
+<p>The URL of the webview should be the returned <code class="higlighted break-word">data.update_endpoint</code>. In the below screenshot I am using magic text to display this, as I have saved the data.update_endpoint to my database under logged in user.
+    <p><img alt="Authorization in Adalo" title="Authorization input Adalo custom action" src="images/useragent1.png" width="80%"/></p>
+    <h3>Important</h3>
+
+<p>
+    Now, run your app in the previewer, run the first custom action button, which should link you to the webview page. You must run this correctly in your app, and then quit previewer. Then <u>go to your database and copy the data.id that just got saved to the database</u> . 
+</p><p>Once you have done that you can continue to Step 3.
+
+</p>
+            
+          <h2>Step 3</h2>  <p>In this step, we retrieve the user's device information that our webview has collected.
+        </p>     
+        
+<h4>Create a new custom action on a button in Adalo. The button has a custom action as below:</h4>
+
+<h3>Create Custom action in Adalo</h3>
+<p>
+    Type <code class="higlighted break-word">CREATE</code>
+</p>
+<p>
+    Method <code class="higlighted break-word">GET</code> <br><br>PLEASE NOTE THIS IS GET METHOD NOT POST
+</p>
+<h3>Endpoint</h3>           
+<p>
+     <code class="higlighted break-word">https://api.adalify.com/user_agent/retrieve/{id}/ 
+    </code>
+</p>
+<h3>Query Parameters</h3> <p>None required</p>
+
+<h3>Response Body</h3> 
+
+
+            <p><code class="higlighted break-word">success</code>: Boolean if the request was successful or not</p>
+            <p><code class="higlighted break-word">status</code>: String version of success value. Can be either ‘successful’ or ‘failed’.</p>
+            <p><code class="higlighted break-word">data.id</code>: String Unique id provided in the creating step</p>
+            <p><code class="higlighted break-word">data.user_agent_info</code>: User-agent details - this is a number of returned properties with info about the user's device</p>
+
+            <h3>Custom Action Input</h3> <p>Once setup, make sure you are feeding into the logged in user > data.id (from first action), as magic text into the custom action.
+
+            </p> <p>Setup is complete</p>
+
+
+    </div>
+    <hr>
+          
+    <!-- FILE UPLOAD -->
+    <div class="overflow-hidden content-section" id="content-file-upload">
+        <h1>File Upload & Storage</h1>
+<h3 style="color:orange;"></p>For production apps please make sure to <u>use your own S3 bucket.</u> Using the Adalify bucket should be for testing purposes only.</h3> 
+
+<p align="left">
+    <iframe width="420" height="315"
+src="https://www.youtube.com/embed/lYlidB7NiW0"></iframe></p>
+
+    <p>This API allows you to upload files via a webview, to be stored on our servers. Optionally, if you have an Adalify Pro account you can use your own S3 bucket.
+
+    </p>
+
+    <p>There are 2 steps to this API. The first call returns a URL for the file uploader which should be put in the webview. The second API call retrieves the file upload data after the user has uploaded a file.
+
+    </p>
+<h3>Pricing - If you are using your own S3 bucket, as we strongly recommend, you must have a pro subscription which is $29 per month. <u>Using the basic plan for the file uploader is for testing only</u>.
+</h3>
+
+
+<h3>Flow</h3><p>1) Call 'Generate uploader URL' API
+</p> 
+<p>2) Save the returned URL to the database
+</p>  
+<p>3) Link to new page with webview
+</p>
+<p>4) For the webview, insert the returned URL that you saved on the database
+</p>
+<p>5) User uploads file into webview
+</p>
+<p>6) Another button, e.g. 'Continue' or 'I've finished uploading', makes the second API call, retrieving the file details to save to your database.
+
+</p>
+
+<h2>Generate Uploader URL</h2>
+<p>This API returns a URL to the uploader, which should be used in the webview. For each upload, you need to generate a new URL, as each uploader page is specific to that upload.</p>
+<h3>Create Custom Action in Adalo</h3>
+<p>
+    Type <code class="higlighted break-word">CREATE</code>
+</p>
+<p>
+    Method <code class="higlighted break-word">POST</code>
+</p>
+<h3>Endpoint</h3>           
+<p>
+     <code class="higlighted break-word">api.adalify.com/files/upload/url_generator/
+    </code>
+</p>
+<h3>Authorization Header</h3>
+<p><img alt="Authorization in Adalo" title="Authorization input Adalo custom action" src="images/authorizationadalo.jpeg" width="50%"/></p>
+<p>
+    Create a Header as above, with the name <code class="higlighted break-word">Authorization</code> and the Value <code class="higlighted break-word">Bearer YOUR-API-KEY</code> using your own API key, NOT the example value in the image.
+    </p>
+
+    <p>
+        <h3>Query Parameters (case sensitive)</h3>
+        <p>
+            <p><code class="higlighted break-word">max_size_in_bytes</code>: Integer optional max upload size in bytes. For example, to limit the file size to 1MB, set this value to 1048576. To calculate file size, use https://www.mindgems.com/info/file-size/. Not providing max_size_in_bytes will result in no limit of the file being uploaded.</p><p><code class="higlighted break-word">accept_filetype_{number}</code>: max_size_in_bytes: Integer optional max upload size in bytes. For example, to limit the file size to 1MB, set this value to 1048576. To calculate file size, use https://www.mindgems.com/info/file-size/. Not providing max_size_in_bytes will result in no limit of the file being uploaded.
+                accept_filetype_{number}: </p>
+
+<h4>Example options for filetype:</h4>     <p> <br>
+    .pdf - any file extension<br>
+    image/jpeg - any mime type commonly known by browsers<br>
+    image/* - accept all types of images<br>
+    video/* - accept all types of video files<br>
+    audio/* - accept all types of audio files<br>
+    application/* - accept all types of application files<br>
+    text/* - accept all types of text files<br>
+
+</p>
+<h3>Response</h3>
+  
+            <p><code class="higlighted break-word">success</code>: Bool true for successful request, False otherwise, or when the value is not found. </p>
+            <p><code class="higlighted break-word">status</code>: String success or failure depending on the request. </p>
+            <p><code class="higlighted break-word">data.id</code>: The ID for the file that you are about to upload. You need to save this in your database as it is required for the retrieve file API.</p>
+            <p><code class="higlighted break-word">data.upload_url</code>: The URL for the file uploader. Save this to your database and use this URL as a webview for the user to upload a file.</p>
+
+
+<h4>Copy and paste the full response from the custom action and store it! You will need the file ID for the next step.</h4>
+
+<h2>Retrieve File</h2>
+<p>Returns the URL of the uploaded file.
+<p>You can use this URL for download links, to embed in a webview or image, and for streaming with the PLYR video comp
+</p>
+<p>Before setting up the second part of the action, you must have uploaded a file into the webview! This means you will get full response
+
+</p>
+<h3>Create Custom Action in Adalo</h3>           
+<p>
+    Type <code class="higlighted break-word">CREATE</code>
+</p>
+<p>
+    Method <code class="higlighted break-word">GET</code>
+</p>
+
+<h3>Endpoint</h3>           
+<p>
+     <code class="higlighted break-word">https://api.adalify.com/files/upload/retrieve/{upload_id}/</code>
+<p><code class="higlighted break-word">{upload_id}</code> is the ID returned from the first step. Unlike some of our other APIs, this magic text is placed within the endpoint of the custom action.
+
+</p>
+<p>IMPORTANT: When setting up your custom action the first time, use <code class="higlighted break-word">b4623c1c-968e-49ba-947e-ba0d5181f514</code> as your upload ID.
+
+</p>
+ 
+<h3>Authorization Header</h3>   
+        <p><img alt="Authorization in Adalo" title="Authorization input Adalo custom action" src="images/authorizationadalo.jpeg" width="50%"/></p>
+        <p>Create the Header parameter as above, switching the example API key for YOUR OWN API KEY</p>
+        <h3>Query Parameters</h3> <p>Additional query parameters are not required for this API call. You just need your authorization header with API key, and the upload ID (as magic text) in the endpoint.
+
+        </p>
+        <h3>Response</h3>
+        <p><code class="higlighted break-word">success</code>: Bool true for successful request, False otherwise, or when the value is not found. </p>
+        <p><code class="higlighted break-word">status</code>: String success or failure depending on the request</p>
+        <p><code class="higlighted break-word">data.id</code>: The ID for the retrieved file.</p>
+        <p><code class="higlighted break-word">data.url</code>: The URL to your file.</p>
+
+
+<h2>Delete Stored File</h2>
+
+<p>You may want to do this after the user had downloaded the file, or you have stored it elsewhere, in order to save storage space on your plan.
+
+</p>
+<p>However you should not really be running out of space unless you are in production, in which case you should be using your own S3 bucket</p>
+
+<h4>This API works for both Adalify's storage, and if you are using your own personal S3 bucket.
+</h4>
+<h3>Create Custom Action in Adalo</h3>           
+<p>
+    Type <code class="higlighted break-word">CREATE</code>
+</p>
+<p>
+    Method <code class="higlighted break-word">DELETE</code>
+</p>
+<h3>Endpoint</h3>           
+<p>
+     <code class="higlighted break-word">https://api.adalify.com/files/upload/delete/{upload_id}/
+
+    </code>
+
+</p>
+<p><code class="higlighted break-word">{upload_id}</code> is the ID returned from the first step. Unlike some of our other APIs, this magic text is placed within the endpoint of the custom action.
+
+</p>
+<h3>Authorization Header</h3>
+<p><img alt="Authorization in Adalo" title="Authorization input Adalo custom action" src="images/authorizationadalo.jpeg" width="50%"/></p>
+<p>
+    Create a Header as above, with the name <code class="higlighted break-word">Authorization</code> and the Value <code class="higlighted break-word">Bearer YOUR-API-KEY</code>. Use your own API key, NOT the example key in the image.
+    </p>
+
+    <h3>Response</h3>
+    <p><code class="higlighted break-word">success</code>:  Bool true for successful request, False otherwise, or when the value is not found.  </p>
+        <p><code class="higlighted break-word">status</code>: String success or failure depending on the request. </p>
+
+
+<h2>Using Your Own Amazon S3 Bucket
+</h2>
+<p>You must be subscribed to the Adalify Pro plan to use this feature.
+
+</p>
+<iframe width="420" height="315"
+src="https://www.youtube.com/embed/YgjTuLuNqB0"></iframe></p>
+    </div>
+
+  <p>By using your own S3 bucket, you will not be charged anything by Adalify for file uploads, storage, or bandwidth. We recommend using your own bucket as described here if you expect to use significant bandwidth or storage.</p>
+
+  <p>We recommend creating a new IAM account to use with Adalify.
+
+</p>
+<p><strong>1) Create a new bucket or skip this step if you wish to use the existing bucket. You can set the bucket to any region. </strong>https://s3.console.aws.amazon.com/s3/
+
+</p>
+<p align="left"><strong>2) </strong><br><img alt="bucket" title="s3 amazon" src="images/buckets.png" width="50%"/></p>
+
+<p><strong>3. Create a new IAM account.</strong> <br>
+
+a) go to https://console.aws.amazon.com/iam/home.<br>
+
+b) On the left side of the screen, select Users.<br>
+
+c) Click the button Add User.<br>
+
+d) Under Set User Details, provide a new user’s username. This can be anything you’d like.<br>
+
+e) Under Select AWS Access Type, select Programmatic access Enables an access key ID and secret access key for the AWS API, CLI, SDK, and other development tools.
+<br>
+f) Click Next: Permissions<br>
+
+g) Under Set Permissions, select Attach existing policies direct, then select Create Policy.<br>
+
+h) Select the tab JSON and paste the below permissions. Make sure to change the bucket name to your bucket name.<br>
+
+<p><code class="higlighted break-word">{<br>
+    "Version": "2012-10-17",<br>
+    "Statement": [<br>
+        {<br>
+            "Effect": "Allow",<br>
+            "Action": <br>
+                "s3:GetObject",<br>
+                "s3:PutObject",<br>
+                "s3:PutObjectAcl", <br>
+                "s3:DeleteObject"<br>
+             ],<br>
+             "Resource": "arn:aws:s3:::YOURBUCKETNAME/*"<br>
+        },<br>
+        {v
+            "Effect": "Allow",<br>
+            "Action": [<br>
+                "s3:ListAllMyBuckets",<br>
+                "s3:GetBucketLocation"<br>
+            ],<br>
+            "Resource": "arn:aws:s3:::*"<br>
+        }<br>
+    ]<br>
+}
+
+</code>  </p>
+<p>- Click Next: Tags, and Next: Review.
+
+</p>
+<p>- Name your new policy, then click Create Policy.
+
+</p>
+<p>- buckeBack to the screen Attach existing policies directly, filter the policy by the new policy name, make sure it is checked, then click Next: Tags.
+
+</p>
+<p align="left"><strong>2) </strong><br><img alt="bucket" title="s3 amazon" src="images/bucket2.png" width="80%"/></p>
+</p>
+
+<P>- Click Next: Review, and finally click Create user.
+
+</P>
+<p>- You will then see the new account’s Access key ID and Secret access key. These keys will be required when you configure your personal bucket on Adalify’s </p>
+
+<p align="left"><strong>2) </strong><br><img alt="bucket" title="s3 amazon" src="images/bucket3.png" width="80%"/></p>
+
+<h4>Update personal bucket settings on Adalify dashboard.
+
+</h4>
+<p>a) Go to https://www.adalify.com/dashboard/s3_setup/ and put in your Access key ID, Secret access key, and bucket name. Then click Update configuration.
+
+</p>
+<p>b) If the configuration is successful, you will see the message 'Your current bucket is set to YOUR BUCKET NAME'.
+
+</p>
+<p align="left"><strong></strong><br><img alt="bucket" title="s3 amazon" src="images/bucket4.png" width="80%"/></p>
+
+<p>- In the bucket’s Permission tab, scroll down to the bottom until you see the section Cross-origin resource sharing (CORS). Click Edit then past the following value, then click Save Changes. This will allow an upload from Adalify’s domain.</p>
+
+<p><code class="higlighted break-word">
+    [ <br>
+    {<br>
+        "AllowedHeaders": [<br>
+            "*"<br>
+        ],<br>
+        "AllowedMethods": [<br>
+            "POST"<br>
+        ],<br>
+        "AllowedOrigins": [<br>
+            "https://api.adalify.com",<br>
+"https://www.adalify.com"<br>
+        ],<br>
+        "ExposeHeaders": [],<br>
+        "MaxAgeSeconds": 3000<br>
+    },<br>
+    {<br>
+        "AllowedHeaders": [<br>
+            "*"<br>
+        ],<br>
+        "AllowedMethods": <br>
+            "GET"<br>
+        ],<br>
+        "AllowedOrigins": [<br>
+            "*"<br>
+        ],<br>
+        "ExposeHeaders": [],<br>
+        "MaxAgeSeconds": 3000<br>
+    }<br>
+]<br>
+
+
+</code>  </p>
+<p>- In the Permission tab, under Block public access (bucket settings), uncheck the first two options then click Save changes. If you cannot set the values as shown below, try clicking Block Public Access settings for this account on the left-hand side and make sure the settings are configured as below as well.
+
+</p>
+<p align="left"><strong></strong><br><img alt="bucket" title="s3 amazon" src="images/bucket5.png" width="80%"/></p>
+<p>All other aspects of using the file upload API are the same. Please follow the other pages in this section to get started.
+</p>
+<p>If you fill in the config settings for your own S3 bucket on Adalify, our API will automatically use your own bucket. If you later wish to use Adalify's storage instead, just delete the config settings on Adalify for your bucket.
+</p>
+<p>Finished</p>
+
+
+
 </div>
-<!-- Github Corner Ribbon - to remove (Ribbon created with : http://tholman.com/github-corners/ )-->
-<a href="https://github.com/ticlekiwi/API-Documentation-HTML-Template" class="github-corner" aria-label="View source on Github" title="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="z-index:99999; fill:#70B7FD; color:#fff; position: fixed; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+<hr>
+
+
+
+    <!-- CALENDAR LINKS -->
+    <div class="overflow-hidden content-section" id="content-calendar-links">
+        <h2>Calendar Links</h2>
+        <p align="left">
+            <iframe width="420" height="315"
+src="https://www.youtube.com/embed/Rx_WfYH__Hs"></iframe></p>
+
+<p>This API generates URL links for:</p>
+<ul>
+<li>
+<p>Google Calendar</p>
+</li>
+<li>
+<p>Yahoo Calendar</p>
+</li>
+<li>
+<p>Outlook Calendar</p>
+</li>
+<li>
+<p>Office 365 Calendar</p>
+</li>
+<li>
+<p>ICS (for Apple devices)</p>
+</li>
+</ul>
+<p>When a user clicks on these links, they will be directed to add an event to the respective calendar.</p>
+<div class="sd-callout" data-callout-type="tip"><span>Pricing</span>&nbsp;- This is an unlimited API from Adalify and you are not charged for usage. However, you must maintain an active Adalify subscription for the ICS links to work.</div>
+<div class="sd-callout" data-callout-type="warning"><span>Important</span>:&nbsp;<br />- ICS link should be used for native iOS calendar.<br />- ICS link is not widely supported on Android and will also not function correctly in previewer / web browsers<br />- Yahoo calendar does not always calculate timezone correctly.&nbsp;<br />- ICS link will only work with an active Adalify subscription</div>
+<h2>Create Custom Action in Adalo</h2>
+<p>Type <code>CREATE</code></p>
+<p>Method <code>POST</code></p>
+<h2>Endpoint</h2>
+<p>How-to guides must focus on achieving a practical goal.</p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/calendar/generate_urls/</code></pre>
+<h2>Authorization Header</h2>
+<p><img src="https://app.snazzydocs.com/storage/users/Ti4PuaHnIB5gBsVB/docs/Et4J7zRX71sYo0JS/images/Screenshot_2021-05-18_at_23.56.09.jpg" alt="" width="451px" /><br /><span>Create the Header parameter as above.</span></p>
+<h2>Query Parameters (case sensitive)></h2>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">title String required The event title
+description String optional The event description
+location String option The event location
+all_day String optional. Whether this event is an all-day event. Set this to any value to make an all-day event.
+start String optional Start time in the format YYYY-MM-DD HH:mm:ss. For example, 2021-05-30 10:00:00 will set the start time of the event to 30 May 2021 10:00:00 am UTC. Adalo's No Formatting datetime is also supported. For example 2020-07-31T14:15:00.000Z.
+end String optional End time in the format YYYY-MM-DD HH:mm:ss. For example, 2021-05-30 10:00:00 will set the end time of the event to 30 May 2021 10:00:00 am UTC.&nbsp; Adalo's No Formatting datetime is also supported. For example 2020-07-31T14:15:00.000Z.</code></pre>
+<div class="sd-callout" data-callout-type="info">For&nbsp;<code>start</code>&nbsp;and&nbsp;<code>end</code>&nbsp;you can use the example date 2021-05-30 10:00:00<br />(You need valid example date to set up your Adalo custom action)</div>
+<p><span><em><span>Instead of setting the end time, you can set the duration of the event by providing only one of the below options. If an end is provided, the values below will be ignored:</span></em></span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">duration_minute Integer optional The duration of the event in minutes.
+duration_hour Integer optional The duration of the event in hours.
+duration_day Integer optional The duration of the event in days.
+duration_week Integer optional The duration of the event in weeks.
+duration_month Integer optional The duration of the event in months.
+duration_year Integer optional The duration of the event in years.</code></pre>
+<h2>Response</h2>
+<p><code>success</code> Bool true for successful request, False otherwise, or when the value is not found. <br /><code>status</code> String success or failure depending on the request. <code>data</code> Object of urls for each calendar type<br /><code>data.google</code> Str URL for Google calendar <br /><code>data.outlook</code> Str URL for Outlook <br /><code>data.office</code> Str url for Office <br /><code>data.yahoo</code> Str url for Yahoo <br /><code>data.ics</code> Str URL for ics file <br /><code>data.ics_data</code> Str for HREF value for anchor tag <em>(use this for ICS URL)</em></p>
+<h2 id="using-the-response">Using the Response</h2>
+<p><code>data.google</code>,<code>data.outlook</code>, <code>data.office</code>, and <code>data.yahoo</code> are URL links that can be used for Android, previewer, and web apps.</p>
+<p><code>data.ics_data</code> is the URL that should be used for iOS devices. This link will not work correctly outside of iOS native.</p>
+<p></p>
+        <hr>
+    </div>
+    <!-- STRING FUNCTIONS -->
+    <div class="overflow-hidden content-section" id="content-string-functions">
+        <h2>String Functions</h2>
+        <p align="left">
+            <iframe width="420" height="315"
+src="https://www.youtube.com/embed/DRgElCo9CNo"></iframe></p>
+
+
+<blockquote>
+<p><span>String functions&nbsp;are used in computer programming languages to manipulate a&nbsp;</span><a href="https://en.wikipedia.org/wiki/String_(computer_science)" rel="noopener noreferrer nofollow" target="_blank"><span>string</span></a><span>&nbsp;or query information about a string (some do both).</span></p>
+</blockquote>
+
+<p><span>Length</span> - find the length of the string</p>
+<p><span>Upper</span></a></span>- Makes all letters uppercase</span></a></p>
+<p><span><span>Lower</span></a></span><span>&nbsp;- Makes all letters lowercase</span></a></p>
+<p><span>Title</span><span>&nbsp;- Make the first letter of every word capitalized.</span></p>
+<p><span>Titlecase</span><span>&nbsp;- Transform the given string to a title by capitalizing the first letter of each word, except &ldquo;small words&rdquo; from the New York Times Manual of Style. This function is different from title function where all the words are transformed.</span></p>
+<p><span>Casefold</span><span>&nbsp;- Make all the letters lowercase.</span></p>
+<p><span>Count</span><span>&nbsp;- Returns the number of occurrences of a substring in the given string.</span></p>
+<p><span>Startswith</span><span>&nbsp;- Check if the text starts with a specified value</span></p>
+<p><span>Endswith</span><span>&nbsp;- Check if the text ends with a specified value</span></p>
+<p><span>Find</span><span>&nbsp;- Finds the first occurrence of the specified value.</span></p>
+<p><span>Index</span><span>&nbsp;- Finds the first occurrence of the specified value.</span></p>
+<p><span>Isalnum</span><span>&nbsp;- Check if all the letters are alphanumeric, which are alphabet letters (a-z) and numbers (0-9).</span></p>
+<p><span>Isalpha</span><span>&nbsp;- Check if all the letters are alphabet letters, which are a-z and A-Z.</span></p>
+<p><span>Isdecimal</span><span>&nbsp;- Check if the text is a decimal</span></p>
+<p><span>isdigit</span><span>&nbsp;- Check if the text is a decimal</span></p>
+<p><span>isidentifier</span><span>&nbsp;- Check if the text is an identifier. A string is considered a valid identifier if it only contains alphanumeric letters (a-z) and (0-9), or underscores (_)</span></p>
+<p><span>islower</span><span>&nbsp;- Check if the string is all lowercase</span></p>
+<p><span>isupper</span><span>&nbsp;- Check if the string is all uppercase</span></p>
+<p><span>isnumeric</span><span>&nbsp;- Check if the string is all numeric.</span></p>
+<p><span>isprintable</span><span>&nbsp;- Check if all the characters are printable, otherwise False. Examples of non-printable characters can be carriage return and line feed</span></p>
+<p><span>isspace</span><span>&nbsp;- Check if all the characters are white space characters</span></p>
+<p><span>istitle</span><span>&nbsp;- Check if the string is a title</span></p>
+<p><span>Replace</span><span>&nbsp;- Return a string where a specified value is replaced with a specified value.</span></p>
+<p><span>Removespace</span><span>&nbsp;- Return a string where spaces are removed</span></p>
+<p><span>rfind</span><span>&nbsp;- Find the last occurrence of the specified value</span></p>
+<p><span>Index</span><span>&nbsp;- Find the last occurrence of the specified value.</span></p>
+<p><span>Translate</span><span>&nbsp;- Returns a string where some specified characters are replaced with the character described in a pair of strings</span></p>
+<div class="sd-callout" data-callout-type="tip"><span>Pricing</span><span>&nbsp;- This is an unlimited API from Adalify and you are not charged for usage.</span></div>
+<h2 id="create-custom-action-in-adalo">Create Custom Action in Adalo</h2>
+<p>Type <code>CREATE</code></p>
+<p>Method <code>POST</code></p>
+<h2 id="authorization">Authorization</h2>
+<p><img src="https://app.snazzydocs.com/storage/users/Ti4PuaHnIB5gBsVB/docs/Et4J7zRX71sYo0JS/images/Screenshot_2021-05-18_at_23.56.09.jpg" alt="" width="47%" /></p>
+<p>Authorization is the above format for all String Functions</p>
+<p>&nbsp;</p>
+<h2 id="length">Length:</h2>
+<p><span>Returns the length of a string.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/length/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text The text to check (Required*)</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Boolean, true for successful request, False otherwise<br /></span><code>status</code><span> String, success or failure<br /></span><code>result</code><span> Integer, string length</span></p>
+<h2 id="upper">Upper:</h2>
+<p><span>Make the first letter of the string uppercase. All other letters lowercase.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/upper/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text The text to transform (Required*)</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> String the transformed text</span></p>
+<h2 id="lower">Lower:</h2>
+<p><span>Make all letters lowercase.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/lower/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text The text to transform (Required*)</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> String the transformed text</span></p>
+<h2 id="title">Title:</h2>
+<p><span>Make the first letter of every word capitalized.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/title/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text The text to transform (Required*)</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> String the transformed text</span></p>
+<h2 id="titlecase">Titlecase:</h2>
+<p><span>Transform the given string to a title by capitalizing the first letter of each word, except &ldquo;small words&rdquo; from the New York Times Manual of Style. This function is different from the title function where all the words are transformed.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/titlecase/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text The text to transform (Required*)</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> String the transformed text</span></p>
+<h2 id="casefold">Casefold:</h2>
+<p><span>Make all the letters lowercase. Here is an explanation from sololern.com &ldquo;Casefolding is a more aggressive version of lower() that is set up to make many of the more unique Unicode characters more comparable. It is another form of normalizing text that may initially appear to be very different, but it takes characters of many different languages into account. Casefolding is similar to lowercasing but more aggressive because it is intended to remove all case distinctions in a string. For example, the German lowercase letter '&szlig;' is equivalent to 'ss'. Since it is already lowercase, lower() would do nothing to '&szlig;', but casefold() converts it to 'ss'.&rdquo;</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/casefold/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text The text to transform (Required*)</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> String the transformed text</span></p>
+<h2 id="count">Count:</h2>
+<p><span>Returns the number of occurrences of a substring in the given string.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/count/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text String required Text to count the occurrences
+
+substring String required Text to count
+
+start (optional) Int Starting index within the string where the search starts.
+
+end (optional) Int with start Ending index within the string where the search ends.</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> Integer, the number of occurrences</span></p>
+<p>&nbsp;</p>
+<h2 id="startswith">Startswith:</h2>
+<p><span>Check if the text starts with a specified value</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/startswith/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text String required Text to search from
+
+value String required Text to search
+
+start Int optional Starting index within the string where the search starts.
+
+end Int optional with start Ending index within the string where the search ends.</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> Bool true if the text starts with the specified value, False otherwise.</span></p>
+<h2 id="endswith">Endswith:</h2>
+<p><span>Check if the text ends with a specified value</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/endswith/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text String required Text to search from
+
+value String required Text to search
+
+start (optional) Int Starting index within the string where the search starts.
+
+end (optional) Int with start Ending index within the string where the search ends.</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> Bool true if the text ends with the specified value, False otherwise.</span></p>
+<h2 id="find">Find:</h2>
+<p><span>Finds the first occurrence of the specified value.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/find/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text String required Text to search from
+
+value String required Text to search
+
+start (optional) Int Starting index within the string where the search starts.
+
+end (optional) Int optional with start Ending index within the string where the search ends.</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> Int index of the first occurrence. -1 if the value is not found</span></p>
+<h2 id="index">Index:</h2>
+<p><span>Finds the first occurrence of the specified value. The difference between Index and Find is that find will return -1 if the value is not found, but Index will return an error.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/index/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text String required Text to search from
+
+value String required Text to search
+
+start (optional) Int Starting index within the string where the search starts.
+
+end (optional) Int optional with start Ending index within the string where the search ends.</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> Int index of the first occurrence.</span></p>
+<h2 id="isalnum">Isalnum:</h2>
+<p><span>Check if all the letters are alphanumeric, which are alphabet letters (a-z) and numbers (0-9).</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/isalnum/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text The text to check (Required*)</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> Bool True if all characters are alphanumeric, False otherwise.</span></p>
+<h2 id="isalpha">Isalpha:</h2>
+<p><span>Check if all the letters are alphabet letters, which are a-z and A-Z.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/isalpha/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text The text to check (Required*)</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> Bool True if all characters are all alphabet letters, False otherwise</span></p>
+<h2 id="isdecimal">Isdecimal:</h2>
+<p><span>Check if the text is a decimal</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/isdecimal/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text The text to check (Required*)</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> Bool True if the text is a decimal, False otherwise.</span></p>
+<h2 id="isdigit">Isdigit:</h2>
+<p><span>Check if the text is a decimal</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/isdigit/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text The text to check (Required*)</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> Bool True if the text is a decimal, False otherwise.</span></p>
+<h2 id="isidentifier">Isidentifier:</h2>
+<p><span>Check if the text is an identifier. A string is considered a valid identifier if it only contains alphanumeric letters (a-z) and (0-9), or underscores (_). A valid identifier cannot start with a number, or contain any spaces.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/isidentifier/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text The text to check (Required*)</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> Bool True if the text is an identifier, False otherwise.</span></p>
+<h2 id="islower">islower:</h2>
+<p><span>Check if the string is all lowercase</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/islower/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text The text to check (Required*)</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> Bool True if the text is all lowercase, False otherwise.</span></p>
+<h2 id="isupper">isupper:</h2>
+<p><span>Check if the string is all uppercase.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/isupper/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text The text to check (Required*)</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> Bool True if the text is all uppercase, False otherwise.</span></p>
+<h2 id="isnumeric">isnumeric:</h2>
+<p><span>Check if the string is all numeric. "-1" and "1.5" are NOT considered numeric values, because all the characters in the string must be numeric, and the - and the . are not.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/isnumeric/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text The text to check (Required*)</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> Bool True if all characters are numeric. False otherwise.</span></p>
+<h2 id="isprintable">isprintable:</h2>
+<p><span>Check if all the characters are printable, otherwise False. Examples of non-printable characters can be carriage return and line feed.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/isprintable/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text The text to check (Required*)</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> Bool True if all characters are printable. False otherwise.</span></p>
+<h2 id="isspace">isspace:</h2>
+<p><span>Check if all the characters are white space characters.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/isspace/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text The text to check (Required*)</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> Bool True if all characters are white space. False otherwise.</span></p>
+<h2 id="istitle">istitle:</h2>
+<p><span>Check if the string is a title. A string is considered a title if all words in a text start with an uppercase letter, AND the rest of the words are lowercase letters, otherwise False.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/istitle/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text The text to check (Required*)</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String success or failure<br /></span><code>result</code><span> Bool True if text is tilte. False otherwise.</span></p>
+<h2 id="replace">replace:</h2>
+<p><span>Return a string where a specified value is replaced with a specified value.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/replace/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text String required Original text to replace the specified value
+
+old String required Text to be replaced
+
+new String to replace with old text with
+
+count (optional) Int, a number specifying how many occurrences of the old value you want to replace. Default is all occurrences</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String, success or failure<br /></span><code>result</code><span> String, the original text after modification</span></p>
+<h2 id="removespace">Removespace:</h2>
+<p><span>Return a string where spaces are removed.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/removespace/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text String required Original text to remove space
+
+count Int optional A number specifying how many occurrences of the space you want to replace. Default is all occurrences</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String, success or failure<br /></span><code>result</code><span> String, the original text after modification</span></p>
+<h2 id="rfind">rfind:</h2>
+<p><span>Find the last occurrence of the specified value.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/rfind/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text: String required Text to search the value
+
+value: String required Text to search
+
+start: (optional) Int Starting index within the string where the search starts.
+
+end: (optional) Int with start Ending index within the string where the search ends.</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String, success or failure<br /></span><code>result</code><span> Int index of the last occurrence. -1 if the value is not found</span></p>
+<h2 id="rindex">rIndex:</h2>
+<p><span>Find the last occurrence of the specified value. The difference between rindex and rfind is that rfind will return -1 if the value is not found, but rindex will return an error.</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/rindex/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text: String required Text to search the value
+
+value: String required Text to search
+
+start: (optional) Int Starting index within the string where the search starts.
+
+end: (optional) Int with start Ending index within the string where the search ends.</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String, success or failure<br /></span><code>result</code><span> Int index of the last occurrence.</span></p>
+<h2 id="translate">Translate:</h2>
+<p><span>Returns a string where some specified characters are replaced with the character described in a pair of strings</span></p>
+<p><span>Endpoint</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-http">https://api.adalify.com/string/translate/</code></pre>
+<p><span>Query Parameters (case sensitive)</span></p>
+<div class="sd-code-actions">&nbsp;</div>
+<pre><code class="language-apache">text: String required Text to perform the replacement
+
+old: String required The letters to be replaced
+
+new: String required The letters to replace the old string in pairs. Must be the same length as Old parameter
+
+remove: String required The letters to be removed from the original text</code></pre>
+<p><span>Response</span></p>
+<p><code>success</code><span> Bool true for successful request, False otherwise<br /></span><code>status</code><span> String, success or failure<br /></span><code>result</code><span> Str transformed original text</span></p>
+    </div>
+
 <style>
-    .github-corner:hover .octo-arm {
-        animation: octocat-wave 560ms ease-in-out
-    }
-
-    @keyframes octocat-wave {
-        0%,
-        100% {
-            transform: rotate(0)
-        }
-        20%,
-        60% {
-            transform: rotate(-25deg)
-        }
-        40%,
-        80% {
-            transform: rotate(10deg)
-        }
-    }
-
-    @media (max-width:500px) {
-        .github-corner:hover .octo-arm {
-            animation: none
-        }
-        .github-corner .octo-arm {
-            animation: octocat-wave 560ms ease-in-out
-        }
-    }
-    @media only screen and (max-width:680px){ .github-corner > svg { right: auto!important; left: 0!important; transform: rotate(270deg)!important;}}
+   
 </style>
-<!-- END Github Corner Ribbon - to remove -->
+
 <script src="js/script.js"></script>
 </body>
 
